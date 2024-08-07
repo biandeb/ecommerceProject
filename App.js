@@ -2,11 +2,15 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 
 import Home from './src/screens/Home';
+import ItemListCategories from './src/screens/ItemListCategories';
+import ItemDetail from './src/screens/ItemDetail';
 
 export default function App() {
   return (
     <>
-    <Home />
+    {/* {<Home />} */}
+    <ItemListCategories category='smartphones' />
+    {/* {<ItemDetail id={1} />} */}
       <StatusBar style="auto" />
     </>
   );

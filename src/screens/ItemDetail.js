@@ -1,11 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from "react-native";
 
-const ItemDetail = () => {
+import Header from "../components/Header";
+import products from '../data/products.json'
+
+const ItemDetail = ({id}) => {
   return (
-    <View>
-      <Text>ItemDetail</Text>
-    </View>
-  )
-}
-export default ItemDetail
-const styles = StyleSheet.create({})
+    <>
+      <Header title="Product Detail" />
+      <View>
+        <Text>{products[id].title}</Text>
+      </View>
+    </>
+  );
+};
+export default ItemDetail;
+const styles = StyleSheet.create({});
