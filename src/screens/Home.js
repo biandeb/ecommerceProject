@@ -6,7 +6,7 @@ import Categories from "../components/Categories";
 const Home = () => {
   return (
     <>
-      <Header title="Ecommerce" />
+      <Header title="Galaxy Store" />
       <Categories />
     </>
   );
