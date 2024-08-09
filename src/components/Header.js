@@ -16,7 +16,6 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     marginTop:22, // Queda bien en Android pero no en IOS, se modifica el header
-    // paddingTop: Platform.OS === "android" ? 30 : 0,
     marginBottom: 10,
     backgroundColor: colors.purple3,
     width: "100%",
@@ -28,5 +27,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
+    color:'#fff',
+    fontWeight:'bold',
   },
 });

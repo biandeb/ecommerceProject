@@ -8,8 +8,8 @@ import ItemDetail from './src/screens/ItemDetail';
 export default function App() {
   return (
     <>
-    {<Home />}
-    {/* {<ItemListCategories category='smartphones' />} */}
+    {/* {<Home />} */}
+    {<ItemListCategories category='smartphones' />}
     {/* {<ItemDetail id={1} />} */}
       <StatusBar style="auto" />
     </>
