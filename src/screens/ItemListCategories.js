@@ -24,7 +24,7 @@ const ItemListCategories = ({ category }) => {
 
   return (
     <>
-      <Header title="Categories" />
+      <Header title={category} />
       <Search onSearch={onSearch} />
       <View>
         <FlatList

@@ -1,13 +1,15 @@
-import { StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 
 import ShadowWrapper from "./ShadowWrapper";
 import { colors } from "../global/colors";
 
-const CategoryItem = ({ item }) => {
+const CategoryItem = ({ item, handleCategorySelected }) => {
   return (
+    <Pressable onPress={() => handleCategorySelected(item)}>
     <ShadowWrapper style={styles.container}>
       <Text style={styles.text}>{item}</Text>
     </ShadowWrapper>
+    </Pressable>
   );
 };
 export default CategoryItem;
