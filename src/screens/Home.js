@@ -1,20 +1,20 @@
-import { SafeAreaView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import Header from "../components/Header";
 import Categories from "../components/Categories";
 
-const Home = ({handleCategorySelected}) => {
+const Home = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header title="Galaxy Store"/>
-      <Categories handleCategorySelected={handleCategorySelected}/>
-    </SafeAreaView>
+      <Categories />
+    </View>
   );
 };
 export default Home;
 
 const styles = StyleSheet.create({
   container:{
-    width:"100%"
+    width:"100%",
   }
 });

@@ -1,13 +1,15 @@
 import { Image, Pressable, StyleSheet, Text, useWindowDimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { colors } from "../global/colors";
 
-const ProductItem = ({ product, handleProductDetailId }) => {
+const ProductItem = ({ product}) => {
   const {width, height} = useWindowDimensions()
+  const navigation = useNavigation()
 
 
   return (
-    <Pressable style={styles.container} onPress={() => handleProductDetailId(product.id)}>
+    <Pressable style={styles.container} onPress={() => navigation.navigate('Details', {id:product.id})}>
       <Text style={[styles.title, width < 300 ? styles.titleMin : styles.titleMax]}>{product.title}</Text>
       <Image
         style={styles.image}

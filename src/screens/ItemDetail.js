@@ -1,12 +1,15 @@
-import { Image, Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 import Header from "../components/Header";
 import products from "../data/products.json";
 import { colors } from "../global/colors";
 
-const ItemDetail = ({ id }) => {
+const ItemDetail = ({route}) => {
+
+  const {id} = route.params;
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Header title="Product Detail" />
       <View style={styles.containerDetail}>
         <Image
@@ -23,7 +26,7 @@ const ItemDetail = ({ id }) => {
           <Text style={styles.buttonBuy}>Buy now</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 export default ItemDetail;
