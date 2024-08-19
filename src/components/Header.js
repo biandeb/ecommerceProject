@@ -1,13 +1,19 @@
-import { Platform, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
 
 import { colors } from "../global/colors";
+import ButtonBack from "./ButtonBack";
 
-const Header = ({ title }) => {
+const Header = ({ title, handleCategorySelected }) => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-    <View style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
-    </View>
+    <SafeAreaView>
+      <View style={styles.container}>
+        {
+          handleCategorySelected ?
+          <ButtonBack handleCategorySelected={handleCategorySelected}/>
+          : null
+        }
+        <Text style={styles.text}>{title}</Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -15,19 +21,21 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:22, // Queda bien en Android pero no en IOS, se modifica el header
+    // marginTop: Platform.OS === 'android' ? StatusBar.currentHeight:0,
     marginBottom: 10,
     backgroundColor: colors.purple3,
     width: "100%",
-    height: 80,
+    height: 110,
+    flexDirection: 'row',
     justifyContent: "center",
     alignItems: "center",
     paddingTop: Platform.OS === "ios" ? 5 : 0, // Unicamente para IOS
-    // marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   text: {
+    marginTop: 15,
     fontSize: 22,
-    color:'#fff',
-    fontWeight:'bold',
+    color: "#fff",
+    position: 'relative',
+    fontFamily: 'FiraSans-BlackItalic',
   },
 });

@@ -1,10 +1,10 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { useState } from "react";
 
 import { colors } from "../global/colors";
 
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useState } from "react";
 
 const Search = ({ onSearch }) => {
   const [input, setInput] = useState("");
@@ -41,10 +41,10 @@ const Search = ({ onSearch }) => {
           onChangeText={handleInputChange}
         />
         <View style={styles.buttonContainer}>
-          <Pressable onPress={search}>
+          <Pressable style={styles.search} onPress={search}>
             <FontAwesome5 name="search" size={25} color="grey" />
           </Pressable>
-          <Pressable onPress={handleRemoveInput}>
+          <Pressable style={styles.remove} onPress={handleRemoveInput}>
             <MaterialIcons name="cancel" size={29} color="grey" />
           </Pressable>
         </View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: colors.beige1,
-    paddingVertical: 7,
+    paddingVertical: 13,
     paddingHorizontal: 15,
     borderRadius: 10,
     width: "75%",
@@ -81,4 +81,10 @@ const styles = StyleSheet.create({
     color:'red',
     marginLeft:25,
   },
+  remove:{
+    marginBottom:1,
+  },
+  search:{
+    marginTop:3,
+  }
 });

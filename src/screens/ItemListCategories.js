@@ -1,12 +1,12 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 
 import Header from "../components/Header";
-import products from "../data/products.json";
 import Search from "../components/Search";
 import ProductItem from "../components/ProductItem";
+import products from "../data/products.json";
 
-const ItemListCategories = ({ category }) => {
+const ItemListCategories = ({ category, handleCategorySelected, handleProductDetailId }) => {
   const [productsFiltered, setProductsFiltered] = useState([]);
 
   useEffect(() => {
@@ -23,21 +23,26 @@ const ItemListCategories = ({ category }) => {
   }
 
   return (
-    <>
-      <Header title={category} />
+    <SafeAreaView style={styles.container}>
+      <Header title={category} handleCategorySelected={handleCategorySelected} />
       <Search onSearch={onSearch} />
-      <View>
         <FlatList
           data={productsFiltered}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <ProductItem product={item} />
+            <ProductItem product={item} 
+            handleProductDetailId={handleProductDetailId}
+            />
           )}
         />
-      </View>
-    </>
+    </SafeAreaView>
   );
 };
 export default ItemListCategories;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{
+    width:'100%',
+    flex:1,
+  },
+});
