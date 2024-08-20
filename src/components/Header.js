@@ -1,7 +1,6 @@
 import { Platform, StyleSheet, Text, View } from "react-native";
 
 import { colors } from "../global/colors";
-import ButtonBack from "./ButtonBack";
 
 const Header = ({ title }) => {
   return (

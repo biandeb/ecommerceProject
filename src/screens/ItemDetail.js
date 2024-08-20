@@ -1,6 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
-import Header from "../components/Header";
 import products from "../data/products.json";
 import { colors } from "../global/colors";
 
