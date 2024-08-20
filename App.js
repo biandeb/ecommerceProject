@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 
 import { fonts } from "./src/global/fonts";
 import { colors } from "./src/global/colors";
-import Navigator from "./src/navigation/navigator";
+import Navigator from "./src/navigation/Navigator";
 
 
 export default function App() {

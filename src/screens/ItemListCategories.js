@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import Header from "../components/Header";
@@ -25,7 +25,6 @@ const ItemListCategories = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Header title={category} />
       <Search onSearch={onSearch} />
         <FlatList
           data={productsFiltered}

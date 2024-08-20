@@ -1,20 +1,13 @@
-import { Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
 import { colors } from "../global/colors";
 import ButtonBack from "./ButtonBack";
 
-const Header = ({ title, handleCategorySelected }) => {
+const Header = ({ title }) => {
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        {
-          handleCategorySelected ?
-          <ButtonBack handleCategorySelected={handleCategorySelected}/>
-          : null
-        }
-        <Text style={styles.text}>{title}</Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={styles.text}>{title}</Text>
+    </View>
   );
 };
 export default Header;
@@ -26,7 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.purple3,
     width: "100%",
     height: 110,
-    flexDirection: 'row',
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     paddingTop: Platform.OS === "ios" ? 5 : 0, // Unicamente para IOS
@@ -35,7 +28,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 22,
     color: "#fff",
-    position: 'relative',
-    fontFamily: 'FiraSans-BlackItalic',
+    position: "relative",
+    fontFamily: "FiraSans-BlackItalic",
   },
 });

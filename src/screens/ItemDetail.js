@@ -10,7 +10,6 @@ const ItemDetail = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Product Detail" />
       <View style={styles.containerDetail}>
         <Image
           style={styles.image}
