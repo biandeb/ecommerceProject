@@ -25,26 +25,33 @@ const Navigator = () => {
           component={ShopStack}
           options={{
             tabBarIcon: ({ focused }) => {
-              return <TabBarIcon text="Shop" icon="shopping-bag" />;
+              return (
+                <TabBarIcon focused={focused} text="Shop" icon="shopping-bag" />
+              );
             },
           }}
         />
-          <Tab.Screen
-            name="OrdersStack"
-            component={OrdersStack}
-            options={{
-              tabBarIcon: ({ focused }) => {
-                return <TabBarIcon text="Orders" icon="list" />;
-              },
-  
-            }}
-          />
+        <Tab.Screen
+          name="OrdersStack"
+          component={OrdersStack}
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return <TabBarIcon focused={focused} text="Orders" icon="list" />;
+            },
+          }}
+        />
         <Tab.Screen
           name="CartStack"
           component={CartStack}
           options={{
             tabBarIcon: ({ focused }) => {
-              return <TabBarIcon text="Cart" icon="shopping-cart" />;
+              return (
+                <TabBarIcon
+                  focused={focused}
+                  text="Cart"
+                  icon="shopping-cart"
+                />
+              );
             },
           }}
         />
