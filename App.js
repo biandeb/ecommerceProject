@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
-import Navigator from "./src/navigation/Navigator";
+import MainNavigator from "./src/navigation/MainNavigator";
 import { fonts } from "./src/global/fonts";
 import { colors } from "./src/global/colors";
 import { store } from "./src/app/store";
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <>
       <Provider store={store}>
-        <Navigator />
+        <MainNavigator />
       </Provider>
       <StatusBar style="light" backgroundColor={colors.purple3} />
     </>

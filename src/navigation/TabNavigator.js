@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet } from 'react-native'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import ShopStack from "./ShopStack";
@@ -10,10 +9,10 @@ import { colors } from "../global/colors";
 
 const Tab = createBottomTabNavigator();
 
-const Navigator = () => {
+
+const TabNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
+     <Tab.Navigator
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
@@ -56,21 +55,20 @@ const Navigator = () => {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
-  );
-};
-export default Navigator;
+  )
+}
+export default TabNavigator;
 
 const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.beige1,
-    shadowColor: "black",
-    elevation: 4,
-    position: "absolute",
-    // bottom: 25,
-    // left: 20,
-    // right: 20,
-    // borderRadius: 15,
-    height: 110,
-  },
-});
+    tabBar: {
+        backgroundColor: colors.beige1,
+        shadowColor: "black",
+        elevation: 4,
+        position: "absolute",
+        // bottom: 25,
+        // left: 20,
+        // right: 20,
+        // borderRadius: 15,
+        height: 110,
+      },
+})
