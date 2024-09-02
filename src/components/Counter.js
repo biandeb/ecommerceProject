@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View,TextInput } from 'react-native'
 import React, { useState } from 'react'
+
 import { colors } from '../global/colors'
 
 const Counter = () => {
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         flexDirection:"row"
     },
     button:{
-        backgroundColor:colors.green3,
+        backgroundColor:colors.purple1,
         minWidth:50,
         alignItems:"center",
         justifyContent:"center",

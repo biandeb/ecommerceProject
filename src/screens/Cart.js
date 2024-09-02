@@ -12,7 +12,13 @@ const Cart = ({navigation}) => {
   const dispatch = useDispatch()
 
   const handleAddOrder = () => {
-    triggerPostOrder({userId:'1', order:cart})
+    const createdAt = new Date().toLocaleString()
+    const order = {
+      ...cart,
+      createdAt
+    }
+
+    triggerPostOrder({userId:'1', order})
     dispatch(clearCart())
     navigation.navigate('OrdersStack')
   }

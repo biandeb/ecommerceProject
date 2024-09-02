@@ -1,9 +1,13 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import orders from '../data/orders.json'
 import OrderItem from '../components/OrderItem'
+import { useGetOrdersByUserQuery } from '../services/shop'
 
 const Orders = () => {
+  const {data:orders, isSuccess, isError, error, isLoading} = useGetOrdersByUserQuery('1')
+
+  if(isLoading) return <View><Text>Loading</Text></View>
+
   return (
     <View>
       <FlatList 
@@ -18,4 +22,5 @@ const Orders = () => {
   )
 }
 export default Orders
+
 const styles = StyleSheet.create({})
