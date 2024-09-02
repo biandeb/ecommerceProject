@@ -2,20 +2,23 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 
-import products from "../data/products.json";
 import { colors } from "../global/colors";
 import { addItemCart } from "../features/cart/cartSlice";
+import { useGetProductQuery } from "../services/shop";
 
 const ItemDetail = ({route}) => {
 
   const {id} = route.params;
+  const {data:product, isLoading} = useGetProductQuery(id)
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
   const handleAddItemCart = () => {
-    dispatch(addItemCart({...products[id],quantity:1}))
+    dispatch(addItemCart({...product,quantity:1}))
     navigation.navigate('CartStack')
   }
+
+  if(isLoading) return <View><Text>Loading</Text></View>
 
   return (
     <View style={styles.container}>
@@ -23,12 +26,12 @@ const ItemDetail = ({route}) => {
         <Image
           style={styles.image}
           resizeMode="contain"
-          source={{ uri: products[id].thumbnail }}
+          source={{ uri: product.thumbnail }}
         />
         <View style={styles.containerText}>
-          <Text style={styles.title}>{products[id].title}</Text>
-          <Text style={styles.description}>{products[id].description}</Text>
-          <Text style={styles.price}>Price: {products[id].price}$</Text>
+          <Text style={styles.title}>{product.title}</Text>
+          <Text style={styles.description}>{product.description}</Text>
+          <Text style={styles.price}>Price: {product.price}$</Text>
         </View>
         <Pressable style={styles.button} onPress={handleAddItemCart}>
           <Text style={styles.buttonBuy}>Buy now</Text>
