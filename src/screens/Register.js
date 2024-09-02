@@ -1,21 +1,35 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { useState } from "react";
-// import { useDispatch } from 'react-redux'
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
 import { colors } from "../global/colors";
+import { useRegisterMutation } from "../services/auth";
+import { setUser } from "../features/auth/authSlice";
 
 
 const Register = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
-  const onSubmit = () => {};
+  const [triggerRegister,{data, isSuccess}] = useRegisterMutation()
+  const dispatch = useDispatch()
+
+  
+  useEffect(() => {
+    if(isSuccess) console.log(data)
+  },[isSuccess])
+
+  const onSubmit = async () => {
+   const {data} = await triggerRegister({email, password})
+   dispatch(setUser({email:data.email, idToken:data.idToken}))
+  };
 
 
   return (

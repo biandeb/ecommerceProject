@@ -5,10 +5,11 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import AuthStack from "./AuthStack";
 import TabNavigator from "./TabNavigator";
+import { useSelector } from "react-redux";
 
 
 const MainNavigator = () => {
-  const [idToken, setIdToken] = useState('')
+  const idToken = useSelector(state => state.auth.idToken)
 
   return (
     <NavigationContainer>

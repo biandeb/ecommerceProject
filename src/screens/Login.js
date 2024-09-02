@@ -1,19 +1,31 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { colors } from "../global/colors";
 import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
+import { useLoginMutation } from "../services/auth";
+import { setUser } from "../features/auth/authSlice";
 
-
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorEmail, setErrorEmail] = useState("")
-  const [errorPassword, setErrorPassword] = useState("")
-  
 
-  const onSubmit = () => {};
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
+  const [triggerLogin, { data, isSuccess }] = useLoginMutation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isSuccess) console.log(data);
+  }, [isSuccess]);
+
+  const onSubmit = async () => {
+    const { data } = await triggerLogin({ email, password });
+    dispatch(setUser({ email: data.email, idToken: data.idToken }));
+  };
 
   return (
     <View style={styles.main}>
@@ -61,8 +73,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontFamily: "FiraSans-BlackItalic"
-    },
+    fontFamily: "FiraSans-BlackItalic",
+  },
   sub: {
     fontSize: 16,
     fontFamily: "FiraSans-BlackItalic",
