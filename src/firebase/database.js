@@ -1,0 +1,1 @@
+export const URL_FIREBASE = 'https://firstecommerce-f2209-default-rtdb.firebaseio.com/'

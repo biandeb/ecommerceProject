@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 
 import Search from "../components/Search";
 import ProductItem from "../components/ProductItem";
-import products from "../data/products.json";
+import { useSelector } from "react-redux";
+
 
 const ItemListCategories = ({ route }) => {
+  const products = useSelector((state => state.shop.products))
+
   const {category} = route.params;
   const [productsFiltered, setProductsFiltered] = useState([]);
 
