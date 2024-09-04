@@ -7,6 +7,7 @@ import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
 import { useLoginMutation } from "../services/auth";
 import { setUser } from "../features/auth/authSlice";
+import { loginSchema } from "../validations/loginSchema";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,8 @@ const Login = ({ navigation }) => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
-  const [triggerLogin, { data, isSuccess }] = useLoginMutation();
+  const [triggerLogin, { data, isSuccess, isError, error }] =
+    useLoginMutation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,8 +25,31 @@ const Login = ({ navigation }) => {
   }, [isSuccess]);
 
   const onSubmit = async () => {
-    const { data } = await triggerLogin({ email, password });
-    dispatch(setUser({ email: data.email, idToken: data.idToken }));
+    try {
+      loginSchema.validateSync({ email, password });
+      const { data } = await triggerLogin({ email, password });
+      dispatch(
+        setUser({
+          email: data.email,
+          idToken: data.idToken,
+          localId: data.localId,
+        })
+      );
+    } catch (error) {
+      console.log(error.path), console.log(error.message);
+      switch (error.path) {
+        case "email":
+          setErrorEmail(error.message);
+          setErrorPassword("");
+          break;
+        case "password":
+          setErrorPassword(error.message);
+          setErrorEmail("");
+          break
+        default:
+          break
+      }
+    }
   };
 
   return (

@@ -7,6 +7,7 @@ import SubmitButton from "../components/SubmitButton";
 import { colors } from "../global/colors";
 import { useRegisterMutation } from "../services/auth";
 import { setUser } from "../features/auth/authSlice";
+import { registerSchema } from "../validations/registerSchema";
 
 
 const Register = ({navigation}) => {
@@ -27,8 +28,32 @@ const Register = ({navigation}) => {
   },[isSuccess])
 
   const onSubmit = async () => {
-   const {data} = await triggerRegister({email, password})
-   dispatch(setUser({email:data.email, idToken:data.idToken}))
+   try {
+    registerSchema.validateSync({email, password, confirmPassword})
+    const {data} = await triggerRegister({email, password})
+   dispatch(setUser({email:data.email,
+     idToken:data.idToken,
+     localId: data.localId
+    }))
+   } catch (error) {
+    switch(error.path){
+      case 'email':
+        setErrorEmail(error.message)
+        setErrorPassword('')
+        setErrorConfirmPassword('')
+        break
+      case 'password':
+        setErrorEmail(error.message)
+        setErrorPassword('')
+        setErrorConfirmPassword('')
+        break
+      case 'confirmPassword':
+        setErrorEmail('')
+        setErrorPassword('')
+        setErrorConfirmPassword(error.message)
+        break
+    }
+   }
   };
 
 
