@@ -11,6 +11,7 @@ const MyProfile = ({navigation}) => {
       style={styles.image}
       />
       <SubmitButton title='Add profile picture' onPress={() => navigation.navigate('ImageSelector')} />
+      <SubmitButton title='Add localization' onPress={() => navigation.navigate('LocationSelector')} />
     </View>
   )
 }
