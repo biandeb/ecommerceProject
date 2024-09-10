@@ -10,7 +10,7 @@ const MapPreview = ({location}) => {
 
   return (
     <View>
-      <Image source={{ uri: mapStaticUrl }} style={styles.image} />
+      <Image source={location.latitude && { uri: mapStaticUrl }} style={styles.image} />
     </View>
   );
 };

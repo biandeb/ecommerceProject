@@ -22,10 +22,13 @@ export const shopApi = createApi({
     }),
     getOrdersByUser: builder.query({
       query: (userId) => `/orders/${userId}.json`,
-      transformResponse:(response) => {
-        const data = Object.entries(response).map(item => ({id:item[0], ...item[1]}))
-        return data
-      }
+      transformResponse: (response) => {
+        const data = Object.entries(response).map((item) => ({
+          id: item[0],
+          ...item[1],
+        }));
+        return data;
+      },
     }),
     postOrder: builder.mutation({
       query: ({ userId, order }) => ({
@@ -33,7 +36,7 @@ export const shopApi = createApi({
         method: "POST",
         body: order,
       }),
-      }),
+    }),
     deleteOrder: builder.mutation({
       query: ({ userId, idOrder }) => ({
         url: `/orders/${userId}/${idOrder}.json`,
@@ -41,14 +44,21 @@ export const shopApi = createApi({
       }),
     }),
     patchImageProfile: builder.mutation({
-      query:({image, localId}) => ({
-        url:`users/${localId}.json`,
-        method: 'PATCH',
-        body:{image}
-      })
-    })
+      query: ({ image, localId }) => ({
+        url: `users/${localId}.json`,
+        method: "PATCH",
+        body: { image },
+      }),
+    }),
+    postUserLocation: builder.mutation({
+      query: ({ localId, userLocation }) => ({
+        url: `users/${localId}/locations.json`,
+        method: "POST",
+        body: userLocation,
+      }),
+    }),
   }),
-})
+});
 
 export const {
   useGetCategoriesQuery,
@@ -56,5 +66,6 @@ export const {
   useGetProductQuery,
   usePostOrderMutation,
   useGetOrdersByUserQuery,
-  usePatchImageProfileMutation
-} = shopApi
+  usePatchImageProfileMutation,
+  usePostUserLocationMutation,
+} = shopApi;
