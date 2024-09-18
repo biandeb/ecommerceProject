@@ -1,15 +1,26 @@
+import { useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 
 
 import AuthStack from "./AuthStack";
 import TabNavigator from "./TabNavigator";
-import { useSelector } from "react-redux";
-
+import { fetchSession } from "../db";
+import { setUser } from "../features/auth/authSlice";
 
 const MainNavigator = () => {
   const idToken = useSelector(state => state.auth.idToken)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    (async () => {
+      const sessions = await fetchSession()
+      if(sessions.rows.length) {
+        dispatch(setUser(sessions.rows._array[0]))
+      }
+    })()
+  }, [])
 
   return (
     <NavigationContainer>

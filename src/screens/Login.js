@@ -8,6 +8,7 @@ import SubmitButton from "../components/SubmitButton";
 import { useLoginMutation } from "../services/auth";
 import { setUser } from "../features/auth/authSlice";
 import { loginSchema } from "../validations/loginSchema";
+import { insertSession } from "../db";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -28,6 +29,7 @@ const Login = ({ navigation }) => {
     try {
       loginSchema.validateSync({ email, password });
       const { data } = await triggerLogin({ email, password });
+      insertSession(data)
       dispatch(
         setUser({
           email: data.email,

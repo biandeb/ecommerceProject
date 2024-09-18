@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { colors } from "../global/colors";
 import { addItemCart } from "../features/cart/cartSlice";
 import { useGetProductQuery } from "../services/shop";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ItemDetail = ({route}) => {
 
@@ -18,7 +19,7 @@ const ItemDetail = ({route}) => {
     navigation.navigate('CartStack')
   }
 
-  if(isLoading) return <View><Text>Loading</Text></View>
+  if(isLoading) return <LoadingSpinner />
 
   return (
     <View style={styles.container}>
