@@ -72,10 +72,6 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     elevation: 4,
     position: "absolute",
-    // bottom: 25,
-    // left: 20,
-    // right: 20,
-    // borderRadius: 15,
     height: 110,
   },
 });

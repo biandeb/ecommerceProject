@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -25,11 +25,18 @@ const Login = ({ navigation }) => {
     if (isSuccess) console.log(data);
   }, [isSuccess]);
 
+  useEffect(() => {
+    if (isError) {
+      setErrorEmail("The data is incorrect. Please check again.");
+      setErrorPassword("The data is incorrect. Please check again.");
+    }
+  }, [isError]);
+
   const onSubmit = async () => {
     try {
       loginSchema.validateSync({ email, password });
       const { data } = await triggerLogin({ email, password });
-      insertSession(data)
+      insertSession(data);
       dispatch(
         setUser({
           email: data.email,
@@ -47,37 +54,37 @@ const Login = ({ navigation }) => {
         case "password":
           setErrorPassword(error.message);
           setErrorEmail("");
-          break
+          break;
         default:
-          break
+          break;
       }
     }
   };
 
   return (
-    <View style={styles.main}>
-      <View style={styles.container}>
-        <InputForm
-          label="Email"
-          value={email}
-          onChangeText={(t) => setEmail(t)}
-          isSecure={false}
-          error={errorEmail}
-        />
-        <InputForm
-          label="Password"
-          value={password}
-          onChangeText={(t) => setPassword(t)}
-          isSecure={true}
-          error={errorPassword}
-        />
-        <SubmitButton onPress={onSubmit} title="Login" />
-        <Text style={styles.sub}>Don't have an account?</Text>
-        <Pressable onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.subLink}>Register</Text>
-        </Pressable>
+      <View style={styles.main}>
+        <View style={styles.container}>
+          <InputForm
+            label="Email"
+            value={email}
+            onChangeText={(t) => setEmail(t)}
+            isSecure={false}
+            error={errorEmail}
+          />
+          <InputForm
+            label="Password"
+            value={password}
+            onChangeText={(t) => setPassword(t)}
+            isSecure={true}
+            error={errorPassword}
+          />
+          <SubmitButton onPress={onSubmit} title="Login" />
+          <Text style={styles.sub}>Don't have an account?</Text>
+          <Pressable onPress={() => navigation.navigate("Register")}>
+            <Text style={styles.subLink}>Register</Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
   );
 };
 
@@ -92,11 +99,11 @@ const styles = StyleSheet.create({
   container: {
     width: "90%",
     backgroundColor: colors.purple1,
-    gap: 15,
+    gap: 10,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: 70,
   },
   title: {
     fontSize: 22,
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
   sub: {
     fontSize: 16,
     fontFamily: "FiraSans-BlackItalic",
-    color: colors.purple3,
+    color: 'white',
   },
   subLink: {
     fontSize: 16,

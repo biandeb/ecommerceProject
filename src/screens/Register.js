@@ -19,13 +19,19 @@ const Register = ({navigation}) => {
   const [errorPassword, setErrorPassword] = useState("");
   const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
-  const [triggerRegister,{data, isSuccess}] = useRegisterMutation()
+  const [triggerRegister,{data, isSuccess, isError, error}] = useRegisterMutation()
   const dispatch = useDispatch()
 
   
   useEffect(() => {
     if(isSuccess) console.log(data)
   },[isSuccess])
+
+  useEffect(() => {
+    if (isError) {
+      setErrorEmail('The email you used already exists.')
+    }
+  }, [isError]);
 
   const onSubmit = async () => {
    try {
@@ -115,7 +121,7 @@ const styles = StyleSheet.create({
   sub: {
     fontSize: 16,
     fontFamily: "FiraSans-BlackItalic",
-    color: colors.purple3,
+    color: 'white',
   },
   subLink: {
     fontSize: 16,

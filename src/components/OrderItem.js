@@ -1,7 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-
 import { colors } from "../global/colors";
 
 const OrderItem = ({ item }) => {
@@ -9,14 +6,29 @@ const OrderItem = ({ item }) => {
     <View style={styles.container}>
       <View style={styles.containerText}>
         <Text style={styles.date}>
-          {item.createdAt}
+          {item.createdAt ? item.createdAt : "Unknown Date"}
         </Text>
-        <Text style={styles.total}>Total: {item.total} $</Text>
       </View>
-      <FontAwesome5 name="search" size={30} color="black" />
+      <View style={styles.itemsContainer}>
+        <Text style={styles.itemsTitle}>Items:</Text>
+        {item.items?.map((product, index) => (
+          <View key={index} style={styles.productContainer}>
+            <Text style={styles.itemsTitle}>
+              {product.title} x {product.quantity}
+            </Text>
+            <Text style={styles.itemsTitle}>${(product.price * product.quantity).toFixed(2)}</Text>
+          </View>
+        ))}
+      </View>
+      <View>
+        <Text style={styles.total}>
+          Total: ${item.total ? item.total.toFixed(2) : "0.00"}
+        </Text>
+      </View>
     </View>
   );
 };
+
 export default OrderItem;
 
 const styles = StyleSheet.create({
@@ -28,21 +40,31 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     marginVertical: 10,
     padding: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
     borderRadius: 15,
-    alignItems: "center",
   },
   containerText: {
-    gap: 15,
+    marginBottom: 10,
   },
   date: {
     fontSize: 16,
     color: "white",
   },
   total: {
-    fontSize: 18,
+    fontSize: 17,
     color: "white",
-    fontWeight: 'bold',
+    fontWeight: "bold",
+  },
+  itemsContainer: {
+    marginTop: 10,
+  },
+  itemsTitle: {
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 5,
+  },
+  productContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 5,
   },
 });

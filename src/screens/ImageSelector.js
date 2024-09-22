@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import SubmitButton from "../components/SubmitButton";
-import { usePatchImageProfileMutation } from "../services/shop";
 
 import * as ImagePicker from "expo-image-picker";
+import { usePatchImageProfileMutation } from "../services/users";
 
 const ImageSelector = ({navigation}) => {
 

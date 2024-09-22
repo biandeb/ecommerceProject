@@ -1,10 +1,37 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import { useDispatch } from "react-redux";
 
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 import { colors } from "../global/colors";
+import { removeItem } from "../features/cart/cartSlice";
 
 const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveItem = () => {
+    dispatch(removeItem(item.id));
+  };
+
+  const handleRemoveItemConfirmation = () => {
+    Alert.alert(
+      "Confirm Delete",
+      `Are you sure you want to delete it?`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Remove canceled"),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => handleRemoveItem(),
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerText}>
@@ -12,7 +39,12 @@ const CartItem = ({ item }) => {
         <Text style={styles.brand}>{item.brand}</Text>
         <Text style={styles.price}>{item.price} $</Text>
       </View>
-      <FontAwesome5 name="trash" size={35} color="black" />
+      <Pressable
+        onPress={handleRemoveItemConfirmation}
+        style={styles.deleteButton}
+      >
+        <FontAwesome5 name="trash" size={35} color="black" />
+      </Pressable>
     </View>
   );
 };
@@ -46,5 +78,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  deleteButton: {
+    padding: 5,
+    borderRadius: 5,
   },
 });

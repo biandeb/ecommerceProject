@@ -9,7 +9,7 @@ const MapPreview = ({location}) => {
   &key=${mapStaticApi}`;
 
   return (
-    <View>
+    <View style = {styles.container}>
       <Image source={location.latitude && { uri: mapStaticUrl }} style={styles.image} />
     </View>
   );
@@ -17,6 +17,10 @@ const MapPreview = ({location}) => {
 export default MapPreview;
 
 const styles = StyleSheet.create({
+  container:{
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   image: {
     width: 300,
     height: 300,

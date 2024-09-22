@@ -16,11 +16,13 @@ const ShopStack = () => {
             <Header
               title={
                 route.name === "Home"
-                  ? "Welcome"
+                  ? "Welcome to Gourmet Bites"
                   : route.name === "Products"
                   ? route.params.category
                   : "Product Detail"
               }
+              isProfileScreen={false}
+              showBackButton={route.name !== "Home"}
             />
           ),
         };

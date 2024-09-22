@@ -6,10 +6,10 @@ import * as Location from "expo-location";
 
 import MapPreview from "../components/MapPreview";
 import { mapStaticApi } from "../firebase/mapStaticApi";
-import SubmitButton from "../components/SubmitButton"
-import { usePostUserLocationMutation } from "../services/shop";
+import SubmitButton from "../components/SubmitButton";
+import { usePostUserLocationMutation } from "../services/users";
 
-const LocationSelector = ({navigation}) => {
+const LocationSelector = ({ navigation }) => {
   const [location, setLocation] = useState({
     latitude: "",
     longitude: "",
@@ -17,7 +17,7 @@ const LocationSelector = ({navigation}) => {
 
   const [address, setAddress] = useState("");
   const localId = useSelector((state) => state.auth.localId);
-  
+
   const [triggerPostUserLocation] = usePostUserLocationMutation();
 
   useEffect(() => {
@@ -46,21 +46,26 @@ const LocationSelector = ({navigation}) => {
 
   const handleConfirmLocation = () => {
     const userLocation = {
-        ...location,
-        address
-    }
-    triggerPostUserLocation({localId,userLocation})
-    navigation.navigate("MyProfile")
-}
+      ...location,
+      address,
+    };
+    triggerPostUserLocation({ localId, userLocation });
+    navigation.navigate("MyProfile");
+  };
 
   return (
-    <View style={styles.container}>
-      <Text>
-        Address: {address}
-      </Text>
+    <>
+      <View style={styles.container}>
+        <Text>Address: {address}</Text>
         <MapPreview location={location} />
-        <SubmitButton title='Confirm Location' onPress={handleConfirmLocation} />
-    </View>
+      </View>
+      <View style={styles.button}>
+        <SubmitButton
+          title="Confirm Location"
+          onPress={handleConfirmLocation}
+        />
+      </View>
+    </>
   );
 };
 export default LocationSelector;
@@ -68,5 +73,12 @@ export default LocationSelector;
 const styles = StyleSheet.create({
   container: {
     marginTop: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 30,
   },
 });

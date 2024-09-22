@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { colors } from "../global/colors";
 
-const ProductItem = ({ product}) => {
+const ProductItem = ({ product }) => {
   const {width, height} = useWindowDimensions()
   const navigation = useNavigation()
 

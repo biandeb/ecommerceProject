@@ -6,6 +6,7 @@ import Orders from "../screens/Orders";
 const Stack = createNativeStackNavigator();
 
 const OrdersStack = () => {
+
   return (
     <Stack.Navigator
       screenOptions={() => {
