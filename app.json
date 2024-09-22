@@ -3,7 +3,6 @@
     "name": "ecommerceProject",
     "slug": "ecommerceProject",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -18,10 +17,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.biandeb39.ecommerceProject"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e658f140-9483-4ccd-b0e8-5892d730a016"
+      }
     }
   }
 }
