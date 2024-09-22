@@ -2,7 +2,7 @@
 
 Galaxy Store is an e-commerce application developed with React Native, designed to offer a seamless and sophisticated shopping experience, specializing in technology products such as smartphones, laptops, tablets, and accessories. The app allows users to explore a wide range of tech categories, make purchases, view their order history, and manage their profiles with ease and security. Galaxy Store provides detailed product descriptions, high-quality images, and real-time stock availability to ensure that users have a smooth and informed shopping journey.
 
-## Funcionalidades Principales
+## Main Features
 
 ### 1. Landing Page
 
