@@ -1,3 +1,3 @@
-export const URL_FIREBASE = 'https://gourmetbites-coderhouse-default-rtdb.firebaseio.com/categories'
-export const API_AUTH = 'AIzaSyC8MRma2iXBg1wxAuvVbzqvK0t4djL6yVA'
+export const URL_FIREBASE = 'https://firstecommerce-f2209-default-rtdb.firebaseio.com/'
+export const API_AUTH = 'AIzaSyCeu8FAN7JMfvAAItECMOgkOBQhIPzjZ-M'
 export const URL_AUTH = 'https://identitytoolkit.googleapis.com/v1/'

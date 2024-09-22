@@ -55,7 +55,7 @@ const Header = () => {
   const getTitle = () => {
     switch (route.name) {
       case "Home":
-        return "Welcome to Gourmet Bites";
+        return "Welcome to Galaxy Store";
       case "Login":
         return 'Login';
       case "Register":

@@ -15,7 +15,7 @@ const LandingPage = () => {
           style={styles.image}
           resizeMode="contain"
           source={{
-            uri: "https://i.postimg.cc/N0VTnYJV/Copy-of-Black-White-Restaurant-Typography-Logo-1170-x-2500-px-1.png",
+            uri: "https://i.postimg.cc/JzBwdGwZ/logo-Galaxy.png",
           }}
         />
         <Pressable
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    bottom: 180,
+    bottom: 200,
     backgroundColor: colors.beige1,
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.purple3,
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: "FiraSans-BlackItalic",
     marginRight: 5,
   },
