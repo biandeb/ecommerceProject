@@ -69,42 +69,56 @@ Galaxy Store is an e-commerce application developed with React Native, designed 
 ```javascript
    const TabNavigator = () => {
   return (
-        <Tab.Navigator
-          screenOptions={{
-            headerShown: false,
-            tabBarShowLabel: false,
-            tabBarStyle: styles.tabBar
-          }}
-        >
-          <Tab.Screen
-             name="ShopStack"
-             component={ShopStack}
-             options={{
-              tabBarIcon: ({focused}) => <TabIcon icon="shop" label="Productos" focused={focused}/>
-             }}
-          />
-          <Tab.Screen 
-              name="CartStack" 
-              component={CartStack}
-              options={{
-                tabBarIcon: ({focused}) =>  <TabIcon icon="shopping-cart" label="Carrito" focused={focused}/> 
-              }}
-          />
-          <Tab.Screen 
-              name="OrdersStack" 
-              component={OrdersStack}
-              options={{
-                tabBarIcon: ({focused}) => <TabIcon icon="list" label="Órdenes" focused={focused}/> 
-              }}
-          />
-          <Tab.Screen 
-              name="ProfileStack" 
-              component={ProfileStack}
-              options={{
-                tabBarIcon: ({focused}) => <TabIcon icon="user" label="Perfil" focused={focused}/> 
-              }}
-          />
-      </Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBar,
+      }}
+    >
+      <Tab.Screen
+        name="HomeStack"
+        component={ShopStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <TabBarIcon focused={focused} text="Shop" icon="shopping-bag" />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="OrdersStack"
+        component={OrdersStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <TabBarIcon focused={focused} text="Orders" icon="list" />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="CartStack"
+        component={CartStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <TabBarIcon focused={focused} text="Cart" icon="shopping-cart" />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="ProfileStack"
+        component={ProfileStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <TabBarIcon focused={focused} text="Profile" icon="user-circle" />
+            );
+          },
+        }}
+      />
+    </Tab.Navigator>
   );
 ```
 
