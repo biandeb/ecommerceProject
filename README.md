@@ -47,8 +47,8 @@ Galaxy Store is an e-commerce application developed with React Native, designed 
 - **Location Management:** Users can update their delivery address.
 - **Logout Functionality:** In the MyProfile screen header, there is a logout icon. When clicked, a popup asks the user to confirm or cancel logout.
   
-<img src="https://i.postimg.cc/rwLHwg0Z/myprofile.png" width="300">
-<img src="https://i.postimg.cc/cLmF4WN6/logout.png" width="300">
+<img src="https://i.postimg.cc/8PSz777t/Screenshot-1727120465.png" width="300">
+<img src="https://i.postimg.cc/4x441jbc/Screenshot-1727120508.png" width="300">
 
 ### 6. **User Location**
 
