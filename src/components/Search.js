@@ -35,7 +35,6 @@ const Search = ({ onSearch }) => {
       <View style={styles.containerInput}>
         <TextInput
           style={styles.input}
-          //   placeholderTextColor='#fff'
           placeholder="Search product"
           value={input}
           onChangeText={handleInputChange}
