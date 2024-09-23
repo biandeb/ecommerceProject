@@ -27,10 +27,15 @@ const ImageSelector = ({navigation}) => {
     if(result.canceled) return
     setImage('data:image/jpg;base64,' + result.assets[0].base64)
   };
-  const confirmImage = () => {
-    triggerAddImageProfile({image, localId})
-    navigation.navigate('MyProfile')
-  };
+
+  const confirmImage = async () => {
+  if (image) {
+    const response = await triggerAddImageProfile({ image, localId });
+    if (response.data) {
+      navigation.navigate('MyProfile', { updated: true });
+    }
+  }
+};
 
   return (
     <View style={styles.container}>
