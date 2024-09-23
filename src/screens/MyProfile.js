@@ -6,16 +6,21 @@ import SubmitButton from "../components/SubmitButton";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useGetUserQuery } from "../services/users";
 
-const MyProfile = ({ navigation }) => {
+const MyProfile = ({ navigation, route }) => {
   const [data, setData] = useState(null);
 
   const localId = useSelector((state) => state.auth.localId);
-  const { data: user, isSuccess, isLoading, isError, error } = useGetUserQuery({ localId });
+  const { data: user, isSuccess, isLoading, refetch } = useGetUserQuery({ localId });
 
   useEffect(() => {
-    if (isSuccess) setData(user);
-    if (isError) console.log(error);
-  }, [isSuccess, isError]);
+    if (route.params?.updated) {
+      refetch();
+    }
+  }, [route.params?.updated]);
+
+  useEffect(() => {
+    if (isSuccess && user) setData(user);
+  }, [user, isSuccess]);
 
   if (isLoading) return <LoadingSpinner />;
   
@@ -38,10 +43,10 @@ const MyProfile = ({ navigation }) => {
     <View style={styles.container}>
       {data && data.image ? (
         <Image
-          source={user.image ? { uri: user.image } : require("../../assets/profile-default.jpg")}
-          resizeMode="cover"
-          style={styles.image}
-        />
+        source={{ uri: data.image }}
+        resizeMode="cover"
+        style={styles.image}
+      />
       ) : (
         <View style={styles.noImageContainer}>
           <Text style={styles.noImageText}>No image available</Text>
